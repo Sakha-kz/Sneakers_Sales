@@ -1,0 +1,11 @@
+Materials Variants Shoe
+Copyright 2021 Shopify
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+
+Source:
+https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/MaterialsVariantsShoe
+
+NorthX presentation changes: scene placement, matte material settings, studio lighting,
+and animated blending between the original Midnight, Beach and Street textures.
+The original geometry is intact. No endorsement by the model author is implied.
