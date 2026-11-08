@@ -186,15 +186,7 @@ test('cart quantities, WhatsApp details and stale stock are handled', async ({ p
   await page.getByRole('button', { name: 'Корзина', exact: true }).click()
   await page.getByRole('button', { name: 'Увеличить количество' }).click()
   await expect(page.locator('.quantity span')).toHaveText('2')
-  await page.evaluate(() => {
-    window.__checkout = ''
-    window.open = (url) => {
-      window.__checkout = url
-      return null
-    }
-  })
-  await page.getByRole('button', { name: 'Заказать в WhatsApp' }).click()
-  const link = await page.evaluate(() => window.__checkout)
+  const link = await page.getByRole('button', { name: 'Заказать в WhatsApp' }).getAttribute('href')
   expect(link).toContain('https://wa.me/77001234567?text=')
   expect(decodeURIComponent(link)).toContain('40 × 2')
   db.products[0].isStock = false

@@ -175,9 +175,7 @@ function CartDrawer({ open, onClose, language }: { open: boolean; onClose: () =>
       active?.focus()
     }
   }, [open])
-  const checkout = () => {
-    if (canCheckout) window.open(buildWhatsAppLink(language, items, products, phone), '_blank', 'noopener,noreferrer')
-  }
+  const checkoutUrl = canCheckout ? buildWhatsAppLink(language, items, products, phone) : undefined
   return (
     <dialog
       ref={dialog}
@@ -273,10 +271,10 @@ function CartDrawer({ open, onClose, language }: { open: boolean; onClose: () =>
                       <strong>{formatPrice(total, language)}</strong>
                     </div>
                     {(!phone || !!error) && <p role='status'>{ui(language, 'noCheckout')}</p>}
-                    <button className='checkout-button' disabled={!canCheckout} onClick={checkout}>
+                    <a className='checkout-button' role='button' href={checkoutUrl} aria-disabled={!canCheckout} tabIndex={canCheckout ? 0 : -1} onClick={event => { if (!canCheckout) event.preventDefault() }}>
                       {words.order}
                       <ArrowUpRight size={18} />
-                    </button>
+                    </a>
                   </div>
                 </>
               )}
